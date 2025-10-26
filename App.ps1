@@ -119,14 +119,20 @@ description = "$Library_Description"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
+#authors = [{ name = "", email = ""}]
+#You can un-comment the authors part and enter your details
+[tool.setuptools.packages.find]
+where = ["src"]
+
 
 "@
 New-Item -Path $Creation_Path -ItemType directory -Name $Library_Creation_Name -Confirm:$false -ErrorAction Stop
 New-Item -Path "$Creation_Path\$Library_Creation_Name" -ItemType file -Name pyproject.toml -Value $TOML_Content -Confirm:$false -ErrorAction Stop
 New-Item -Path "$Creation_Path\$Library_Creation_Name" -ItemType file -Name README.md -Value $Library_Description -Confirm:$false -ErrorAction Stop
-New-Item -Path "$Creation_Path\$Library_Creation_Name" -ItemType directory -Name $Library_Creation_Name -Confirm:$false -ErrorAction Stop
-New-Item -Path "$Creation_Path\$Library_Creation_Name\$Library_Creation_Name" -ItemType file -Name __init__.py -Value "from .$Library_Creation_Name import *" -Confirm:$false -ErrorAction Stop
-New-Item -Path "$Creation_Path\$Library_Creation_Name\$Library_Creation_Name" -ItemType file -Name "$Library_Creation_Name.py" -Confirm:$false -ErrorAction Stop
+New-Item -Path "$Creation_Path\$Library_Creation_Name" -ItemType directory -Name src -Confirm:$false -ErrorAction Stop
+New-Item -Path "$Creation_Path\$Library_Creation_Name\src" -ItemType directory -Name $Library_Creation_Name -Confirm:$false -ErrorAction Stop
+New-Item -Path "$Creation_Path\$Library_Creation_Name\src\$Library_Creation_Name" -ItemType file -Name __init__.py -Value "from .$Library_Creation_Name import *" -Confirm:$false -ErrorAction Stop
+New-Item -Path "$Creation_Path\$Library_Creation_Name\src\$Library_Creation_Name" -ItemType file -Name "$Library_Creation_Name.py" -Confirm:$false -ErrorAction Stop
 
 
 } catch {
@@ -185,31 +191,31 @@ $Main_Form.ShowDialog()
 # SIG # Begin signature block
 # MIIFagYJKoZIhvcNAQcCoIIFWzCCBVcCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURpDvhKA9bl26XOmpyG+jLEag
-# nUygggMGMIIDAjCCAeqgAwIBAgIQfuUMOodC171JJFV/Av8OFDANBgkqhkiG9w0B
-# AQsFADAZMRcwFQYDVQQDDA5QU0dDZXJ0aWZpY2F0ZTAeFw0yNTEwMjUxNzA0Mzla
-# Fw0yNjEwMjUxNzI0MzlaMBkxFzAVBgNVBAMMDlBTR0NlcnRpZmljYXRlMIIBIjAN
-# BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6pjmeTnLo5tgev1oXaibWZ24iXZF
-# IRR1EWWT1u0Pny5X5GPzJ7eU5O1uQHfpwlkFWJNj4/rbX/NZVkl92AkjjCdnB1SC
-# lyffUeMFIje7P01CG8PdPPcrggslA5dD3LujyWGSMiCCTsCg7fcKGaria40yYnVu
-# Ejbd9W0YWbfFjqszzTIjKgSsepHZf5FCOJ9qf3V5hWP4o8RWk0nelzlCtrXCw4LZ
-# YF72UegOP+/FPmnnEI1tmMbgPei01HR6DLjaq2N20e4QhR0aZuHbxUQSwd4oDq/s
-# jGfNVtN0e7SY6mXG2DKkiHU1N272bSo4CTZZbceAsSESUBha08IaxXp7pQIDAQAB
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeYORnZR9X6ipdZdExy7cey/Q
+# 20KgggMGMIIDAjCCAeqgAwIBAgIQM4NUsN5cJZ5FZ731vM5glTANBgkqhkiG9w0B
+# AQsFADAZMRcwFQYDVQQDDA5QU0dDZXJ0aWZpY2F0ZTAeFw0yNTEwMjYwODUwNTha
+# Fw0yNjEwMjYwOTEwNThaMBkxFzAVBgNVBAMMDlBTR0NlcnRpZmljYXRlMIIBIjAN
+# BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs/pBPlyyneeJdjNWUHYT1isEn617
+# txFATR6BuXZtmiXaWuR0x15H/VXBBV6zTUR6kYFIGnzVMj1Ay4szyiDj8oodIQ5c
+# rRYBskYMOufUMQ2hqrbgfPXT42Li+irTQWYrn6ZBF+UcdBXoUe5HBN9OemqrA+Pt
+# WicoAQ/m4u54dm+hL1jmXIjbew5NL+9j+kE4GN539w3cofKVxp502i4gasVBfjqf
+# wECqfONAgC1i2N1Yh2i/6GmvsO96eK3vVQX8P9EtlI/HcARXCulDOa/c0wdgt0no
+# 3GD25QAbKrh+r0z/xFW1k2V+VJMKuBOKzgSlQyoM2r9SvBa5nfSwV05KgQIDAQAB
 # o0YwRDAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwMwHQYDVR0O
-# BBYEFGh6icZe5VHDFoO7nekOVqI5NnNKMA0GCSqGSIb3DQEBCwUAA4IBAQBvpNjC
-# PlesnF99OHNhNSqy9WHxoRDtkGXukdOKufiUAS5lviYnW+jD9yL8wNwRLjMSdNwe
-# mJO6Mie/773BZcQ3irOn7ZgDgLov2zAwWsR4YdUniT39IeP5ZGcxNDFzAx7Tu1LN
-# ENVfbmJWwX9dl/qnKI3wOCPX9lJyY+LdRTreUjVjuBlD5sN585zzA0knUkk4siR6
-# SdfiGkgipXULtiGJuXK6dqQZr/1TKyBY5coeXcjRWKj8K5L3wecn+lo18BysDzHk
-# zM6Tyulw4Pyqvven/OBr9Gv4Vu5WTuFKGmuEjtBBXeFXSVYPIwEiJtmXz8I4AkJg
-# NYsY9tasiX0fBD2wMYIBzjCCAcoCAQEwLTAZMRcwFQYDVQQDDA5QU0dDZXJ0aWZp
-# Y2F0ZQIQfuUMOodC171JJFV/Av8OFDAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIB
+# BBYEFHkVpMRHBoKqY3wwhB+P90pWLe2pMA0GCSqGSIb3DQEBCwUAA4IBAQCGgRTd
+# YEo4YJ/rLmPsljuR0mtFkYgZN85t8vbaMcGFtDc6C18MCxN62P3VIVxaGyaA8nKW
+# Uoy0f8nKiO9jIF45nEZHd2Uod0vvVO/OKUhBHXKv0OR7w6PgZtodROcpITlsqs47
+# +4cJOmBOSM8HRO854fBxHPRd0ABlWgVVRj4h/VBLbEQd+ODaBJ3O7KMhLLEHZIEk
+# rEuZ+ZkV/h2cSj1R7ThFplYXS1tPGEmQJh81wdcQX6Pu9dPyuT1hCKj2o7JaXUcA
+# u8LbL50XB7poyND5yFkLRbkZ2BfyikUD2R3dbCXiSxbOQN+lMzteHjzmya1BEVYC
+# AxzCEDtZXUFbld+nMYIBzjCCAcoCAQEwLTAZMRcwFQYDVQQDDA5QU0dDZXJ0aWZp
+# Y2F0ZQIQM4NUsN5cJZ5FZ731vM5glTAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIB
 # DDEKMAigAoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEE
-# AYI3AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUie2mZsm+MoIE
-# SzNs/4q+iRz4ZJUwDQYJKoZIhvcNAQEBBQAEggEAgeUuDofFXqQRnjRoK5nDSBvR
-# 7YcPT+H5iBpuuTfSnf60JWGOASbjoz+YsmZMmjpVfNo0SHiGrB/FgpBREYJ+cdFG
-# zmyuUyB96Dw5J8EB79fEKhxZ17tNibp+kNr9RhgRy+eed+jMFt9+1AOMA8kfsv6Y
-# xD4oCjdsDPsReN+0BxBaJFIXpgFd43AgIRQtQbUMulgSvAlmfbI89sYUyhrsuB+9
-# hhWCDKoJ7dy7P7/HLkA54sxJHDxzXjJauZqVWWunziEvQsm47IAtDXYSlCYDkJam
-# lKbsxbzYH+U6/xvmhq59dJAgQ+v7X8k3MHOxkTDoyxbfNtvxt8xTojoULaTosg==
+# AYI3AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQURNJL9TKH2NYO
+# +OlX5MLtes2U+jIwDQYJKoZIhvcNAQEBBQAEggEAoZBEvn3MjBIBIWTWHsEP41LY
+# 6uC0LeE10wCBSa+G5ntrAUBB31+18wxxxN7WeYLVXqMO3DFu4h2OLgq6ZkqewM5Z
+# qNEABhdd/a6sVqKeOHUct1KmXSG+umV1MxA3G5b7ZkuUoePM7/bnsWyc5+Wf1+72
+# LU9c9Dn3VklrBC6OsP0TWRT58SBaVgQwKA1t9LRvnDMGYTmqMu20vWIoekeW6OgR
+# USwVXxClMxAUycxHfZkzUZfmk31deEFeAnVF9EDB5Nf78ZY0JvvkxuNYE34XtVZ7
+# G7PhCzHVF+ikSDOFej4pTRcrJgBOwVv6wpleZaxDbHgAJtGzF5/ZVLUBEURnCg==
 # SIG # End signature block
