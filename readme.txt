@@ -17,4 +17,7 @@ To build a library:
 run app.exe
 enter the root directory of your library {in this case - c:\Projects\pytestpybest} and press build {it takes like 15 seconds so be patiant}.
 it will build and install the library based on the pyproject.toml file, so modify it if necessary but make sure it's correct, the Create function generates a valid one.
-now you can import and use your library! 
+now you can import and use your library!
+
+note:
+the function autocomplete is only available after using the "Build" function. "Editable build" won't allow it 

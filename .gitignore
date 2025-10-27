@@ -2,3 +2,4 @@ CICD_Git_Pusher.bat
 tests
 *.pfx
 *.cer
+todo.txt
